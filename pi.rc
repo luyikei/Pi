@@ -1,0 +1,8 @@
+<!DOCTYPE gui>
+<gui name="pi" library="konq_pi">
+<MenuBar>
+ <Menu name="tools"><text>&amp;Tools</text>
+  <Action name="calculatepi"/>
+ </Menu>
+</MenuBar>
+</gui>
