@@ -20,6 +20,8 @@
 #define pi_h
 
 #include <kparts/plugin.h>
+#include <QRegExpValidator>
+#include <KParts/ReadOnlyPart>
 
 class Pi : public KParts::Plugin
 {
@@ -30,6 +32,15 @@ public:
 
 public slots:
     void calcPi();
+private:
+    KParts::ReadOnlyPart * part;
+    QRegExpValidator *validator;
+
+    void sandbox_init();
+
+    int pipe_fd[2];
+    int pipe_result_fd[2];
+    int child_pid;
 };
 
 #endif
