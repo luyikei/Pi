@@ -29,11 +29,12 @@
 #include <kauthorized.h>
 #include <kio/netaccess.h>
 #include <kparts/fileinfoextension.h>
+#include <QRegExpValidator>
 
 Pi::Pi( QObject* parent, const QVariantList & )
     : KParts::Plugin( parent )
-{
 
+{
     KAction *action = actionCollection()->addAction("calculatepi");
     action->setText(i18n( "&Calculate Pi..." ));
     connect(action, SIGNAL(triggered(bool)), SLOT(calcPi()));
@@ -42,8 +43,21 @@ Pi::Pi( QObject* parent, const QVariantList & )
 void Pi::calcPi()
 {
     KParts::ReadOnlyPart * part = qobject_cast<KParts::ReadOnlyPart *>(parent());
+    //QRegExpValidator validator(QRegExp("[0-9]+"), part->widget());
+
     int count=0;
-    const int total = 100000;
+    bool ok;
+    int total;
+    /*
+    qint64 total = KInputDialog::getText(i18n("Please enter loop total count"),
+                                         i18n("Value of loop count"),
+                                         i18n(""),
+                                         &ok,
+                                         part->widget(),
+                                         &validator,
+                                         i18n(""),
+                                         i18n(""),
+                                         QStringList("")).toLongLong();*/
     qreal pi=0;
 
     for (int i=0; i<total; i++) {
